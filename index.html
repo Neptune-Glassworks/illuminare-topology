@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Illuminare Topology</title>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/cytoscape/dist/cytoscape.min.js"></script>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: #f9f9f9;
+    }
+    #cy {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="cy"></div>
+  <script>
+    const style = [
+  {
+    "selector": "node",
+    "css": {
+      "height": 18.0,
+      "border-color": "rgb(255,255,255)",
+      "width": 18.0,
+      "font-family": "SansSerif",
+      "font-weight": "normal",
+      "text-valign": "bottom",
+      "text-halign": "center",
+      "text-opacity": 1.0,
+      "border-opacity": 1.0,
+      "shape": "hexagon",
+      "font-size": 14,
+      "background-color": "rgb(254,196,79)",
+      "border-width": 7.0,
+      "color": "rgb(37,37,37)",
+      "background-opacity": 1.0,
+      "content": "data(name)"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Industrial Reference & Utility']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Rhythm & Visual Cadence']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Natural Forms & Phenomena']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Material Honesty & Process']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Optics & Perception']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Mathematical & Geometric Forms']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Natural Systems & Structures']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Restraint & Elegance']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node[shared_name = 'Gesture & Improvisation']",
+    "css": {
+      "shape": "ellipse"
+    }
+  },
+  {
+    "selector": "node:selected",
+    "css": {
+      "background-color": "rgb(255,255,0)"
+    }
+  },
+  {
+    "selector": "edge",
+    "css": {
+      "width": 3.0,
+      "line-color": "rgb(255,255,255)",
+      "target-arrow-color": "rgb(255,255,255)",
+      "font-size": 10,
+      "text-opacity": 0.49019607843137253,
+      "source-arrow-shape": "triangle",
+      "source-arrow-color": "rgb(255,255,255)",
+      "target-arrow-shape": "triangle",
+      "font-family": "SansSerif",
+      "font-weight": "normal",
+      "opacity": 1.0,
+      "color": "rgb(0,0,0)",
+      "content": "",
+      "line-style": "dashed"
+    }
+  },
+  {
+    "selector": "edge:selected",
+    "css": {
+      "line-color": "rgb(255,0,0)"
+    }
+  }
+];
+    fetch('data/neptune_theme_network_FULL.csv_1.json')
+      .then(res => res.json())
+      .then(data => {
+        cytoscape({
+          container: document.getElementById('cy'),
+          elements: data.elements,
+          style: style,
+          layout: { name: 'preset' }
+        });
+      });
+  </script>
+</body>
+</html>
